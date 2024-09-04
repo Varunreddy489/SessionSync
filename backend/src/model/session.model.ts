@@ -1,43 +1,42 @@
 import mongoose from "mongoose";
 
-const SessionSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  adminId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Admin",
-    required: true,
-  },
-  participants: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+const sessionSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
-  ],
-  startTime: {
-    type: Date,
-    required: true,
+    description: {
+      type: String,
+      trim: true,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    scheduledAt: {
+      type: Date,
+      required: true,
+    },
+    duration: {
+      type: Number,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["Scheduled", "Completed", "Cancelled"],
+      default: "Scheduled",
+    },
   },
-  endTime: {
-    type: Date,
-    required: true,
-  },
-  isRecurring: {
-    type: Boolean,
-    default: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
-const Session = mongoose.model("Session", SessionSchema);
-module.exports = Session;
+export const MeetingModel = mongoose.model("Meeting", sessionSchema);

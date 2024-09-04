@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 
-import { userModel } from "../model/user.model";
 import generateTokenAndSetCookie from "../utils/genToken";
+import { UserModel } from "../model/user.model";
 
 export const userRegister = async (req: Request, res: Response) => {
   try {
@@ -16,7 +16,7 @@ export const userRegister = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Please fill all the fields" });
     }
 
-    const isRegistered = await userModel.findOne({ email });
+    const isRegistered = await UserModel.findOne({ email });
 
     if (!isRegistered) {
       return res.status(404).json({ error: "User Doesn`t exist" });
@@ -25,7 +25,7 @@ export const userRegister = async (req: Request, res: Response) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new userModel({
+    const newUser = new UserModel({
       name,
       email,
       password: hashedPassword,
@@ -50,7 +50,7 @@ export const userLogin = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Email and password are required" });
     }
 
-    const user = await userModel.findOne({ email });
+    const user = await UserModel.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ error: "User doesn`t exist" });
@@ -69,6 +69,14 @@ export const userLogin = async (req: Request, res: Response) => {
       name: user.name,
       email: user.email,
     });
+  } catch (error) {
+    console.error("error in userLogin:", error);
+    res.status(404).json({ error: "internal server error" });
+  }
+};
+
+export const adminRegister = async (req: Request, res: Response) => {
+  try {
   } catch (error) {
     console.error("error in userLogin:", error);
     res.status(404).json({ error: "internal server error" });

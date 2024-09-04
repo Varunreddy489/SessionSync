@@ -1,29 +1,34 @@
 import mongoose from "mongoose";
+import { UserAuthTypes } from "../types/types";
 
-const userSchema= new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
+const availabilitySchema = new mongoose.Schema({
+    day: { type: String, required: true },
+    startTime: { type: Date, required: true },
+    endTime: { type: String, required: true },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { _id: false }
+);
 
-export const userModel = mongoose.model("user", userSchema);
+const userSchema = new mongoose.Schema<UserAuthTypes>({
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    availability: [availabilitySchema],
+  },
+  { timestamps: true }
+);
+
+export const UserModel = mongoose.model("User", userSchema);
