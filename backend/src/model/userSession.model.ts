@@ -1,35 +1,43 @@
 import mongoose from "mongoose";
 
-const userSessionSchema = new mongoose.Schema(
+const sessionSchema = new mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
     },
-    date: {
+    email: {
+      type: String,
+      required: true,
+    },
+    start: {
       type: Date,
       required: true,
     },
-    createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    startTime: {
+    end: {
       type: Date,
       required: true,
     },
-    endTime: {
-      type: Date,
+    duration: {
+      type: Number, // Duration in minutes
       required: true,
     },
+    scheduledSlots: [
+      {
+        start: {
+          type: Date, // Start time of each scheduled slot
+          required: true,
+        },
+        end: {
+          type: Date, // End time of each scheduled slot
+          required: true,
+        },
+      },
+    ], // Empty array for scheduledSlots
   },
   {
     timestamps: true,
   }
 );
 
-export const UserSessionModel = mongoose.model(
-  "UserSession",
-  userSessionSchema
-);
+export const UserSessionModel = mongoose.model("userSessions", sessionSchema);
