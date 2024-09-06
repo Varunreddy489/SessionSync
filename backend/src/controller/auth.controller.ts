@@ -2,9 +2,9 @@ import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 
 import { UserModel } from "../model/user.model";
+import { AdminModel } from "../model/admin.model";
 import generateTokenAndSetCookie from "../utils/genToken";
 import generateAdminTokenAndSetCookie from "../utils/adminToken";
-import { AdminModel } from "../model/admin.model";
 
 export const userRegister = async (req: Request, res: Response) => {
   try {

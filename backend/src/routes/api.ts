@@ -19,6 +19,8 @@ import {
   deleteUserSession,
   updateUserSession,
 } from "../controller/session.controller";
+import protectedRoute from "../middleware/AdminProtectedRoute";
+import AdminProtectedRoute from "../middleware/AdminProtectedRoute";
 
 const router = Router();
 
@@ -31,16 +33,16 @@ router.post("/admin/register", adminRegister);
 
 // * UserSession Routes
 
-router.get("/user/session/:id", getUserSessions);
-router.post("/user/session/:id", createUserSession);
-router.put("/user/session/:sessionId", updateUserSession);
-router.delete("/user/session/:sessionId", deleteUserSession);
+router.get("/user/session/:id", protectedRoute, getUserSessions);
+router.post("/user/session/:id", protectedRoute, createUserSession);
+router.put("/user/session/:sessionId", protectedRoute, updateUserSession);
+router.delete("/user/session/:sessionId", protectedRoute, deleteUserSession);
 
 // * AdminSession Routest
-router.post("/admin/session", createSession);
-router.get("/admin/session", getAdminSession);
-router.get("/admin/:adminId", getAllUserSessions);
-router.put("/admin/session/:sessionId", updateSession);
-router.delete("/admin/session/:sessionId", deleteSession);
+router.post("/admin/session", AdminProtectedRoute, createSession);
+router.get("/admin/session", AdminProtectedRoute, getAdminSession);
+router.get("/admin/:adminId", AdminProtectedRoute, getAllUserSessions);
+router.put("/admin/session/:sessionId", AdminProtectedRoute, updateSession);
+router.delete("/admin/session/:sessionId", AdminProtectedRoute, deleteSession);
 
 export { router as apiRoutes };

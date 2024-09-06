@@ -4,7 +4,7 @@ import { Types } from "mongoose";
 
 const generateAdminTokenAndSetCookie = (userId: Types.ObjectId, res: Response) => {
 
-    const JWT_SECRET = process.env.JWT_SECRET as Secret;
+    const JWT_SECRET = process.env.ADMIN_JWT_SECRET as Secret;
 
     const token = jwt.sign({ userId }, JWT_SECRET, {
         expiresIn: "15d",
