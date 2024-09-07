@@ -71,11 +71,11 @@ These instructions will help you set up the project on your local machine for de
 
 ## Environment Variables
 
- **Create a .env file in backend directory and add the following environment variables:**
+**Create a `.env` file in the backend directory and add the following environment variables:**
 
-    ```bash
+```env
     MONGO_URI=your_mongodb_uri
     ADMIN_JWT_SECRET=your_admin_jwt_secret
     JWT_SECRET=your_jwt_secret
-    PORT=your_port\_number
-    ```
+    PORT=your_port_number
+
