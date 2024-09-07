@@ -38,7 +38,7 @@ These instructions will help you set up the project on your local machine for de
 2. **Navigate to the project directory:**
 
 ```bash
-cd SessionSync
+    cd SessionSync
 ```
 
 3. **Open 2 terminals and navigate to the project directory in both:**
@@ -49,28 +49,18 @@ cd SessionSync
    cd backend
    ```
 
-Frontend terminal
-
-````bash
-    cd frontend
-    ```
-
-4. **Create a .env file in backend directory and add the following environment variables:**
+    Frontend terminal
 
     ```bash
-    MONGO_URI=your_mongodb_uri
-    ADMIN_JWT_SECRET=your_admin_jwt_secret
-    JWT_SECRET=your_jwt_secret
-    PORT=your_port\_number
+    cd frontend
     ```
-
 
 4. **Install backend dependencies and run :**
 
     ```bash
     npm Install
     npm run dev
-````
+    ```
 
 5. **Install frontend dependencies and run :**
 
@@ -79,6 +69,13 @@ Frontend terminal
    npm run dev
    ```
 
-```
+## Environment Variables
 
-```
+ **Create a .env file in backend directory and add the following environment variables:**
+
+    ```bash
+    MONGO_URI=your_mongodb_uri
+    ADMIN_JWT_SECRET=your_admin_jwt_secret
+    JWT_SECRET=your_jwt_secret
+    PORT=your_port\_number
+    ```
