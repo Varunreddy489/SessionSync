@@ -60,7 +60,7 @@ These instructions will help you set up the project on your local machine for de
     ```bash
     npm Install
     npm run dev
-    ```
+    ```x
 
 5. **Install frontend dependencies and run :**
 
