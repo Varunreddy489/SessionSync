@@ -26,5 +26,5 @@ app.use('/api',apiRoutes)
 
 app.listen(PORT, () => {
   connectDb();
-  console.log(`Jai Shree Ram-${PORT}`);
+  console.log(`Server Running-${PORT}`);
 });
