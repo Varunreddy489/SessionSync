@@ -10,3 +10,9 @@ export interface AvalibilityTypes {
   startTime: Date;
   endTime: Date;
 }
+
+export type SendEmailParams = {
+  toMail: string;
+  subject: string;
+  body: string;
+};

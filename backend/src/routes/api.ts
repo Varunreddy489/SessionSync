@@ -5,6 +5,7 @@ import {
   deleteSession,
   getAdminSession,
   getAllUserSessions,
+  sendTestEmail,
   updateSession,
 } from "../controller/admin.controller";
 import {
@@ -39,10 +40,15 @@ router.put("/user/session/:sessionId", protectedRoute, updateUserSession);
 router.delete("/user/session/:sessionId", protectedRoute, deleteUserSession);
 
 // * AdminSession Routest
-router.post("/admin/session", AdminProtectedRoute, createSession);
+router.post("/admin/session", createSession);
 router.get("/admin/session", AdminProtectedRoute, getAdminSession);
 router.get("/admin/:adminId", AdminProtectedRoute, getAllUserSessions);
 router.put("/admin/session/:sessionId", AdminProtectedRoute, updateSession);
 router.delete("/admin/session/:sessionId", AdminProtectedRoute, deleteSession);
+
+
+// * Email Route
+
+router.post("/email", sendTestEmail)
 
 export { router as apiRoutes };

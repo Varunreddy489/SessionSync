@@ -1,10 +1,13 @@
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 // import Register from "./pages/Register";
+
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   return (
     <div className="bg-black h-screen ">
-      <Login />
+      {/* <Login /> */}
+      <LandingPage />
     </div>
   );
 };

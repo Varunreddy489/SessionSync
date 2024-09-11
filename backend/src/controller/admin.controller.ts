@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import { AdminModel } from "../model/admin.model";
 import { UserSessionModel } from "../model/userSession.model";
 import { SessionModel } from "../model/session.model";
+import { sendEmail } from "../config/SendEmail";
+import { SendEmailParams } from "../types/types";
 
 export const getAllUserSessions = async (req: Request, res: Response) => {
   try {
@@ -23,14 +25,13 @@ export const getAllUserSessions = async (req: Request, res: Response) => {
   }
 };
 
-export const getAdminSession=async(req: Request, res: Response)=>{
-try {
-  
-} catch (error) {
-  console.error("error in getAdminSession:", error);
-  res.status(404).json({ error: "internal server error" });
-}
-}
+export const getAdminSession = async (req: Request, res: Response) => {
+  try {
+  } catch (error) {
+    console.error("error in getAdminSession:", error);
+    res.status(404).json({ error: "internal server error" });
+  }
+};
 
 export const createSession = async (req: Request, res: Response) => {
   try {
@@ -52,7 +53,28 @@ export const createSession = async (req: Request, res: Response) => {
       scheduledSlots,
     });
 
-    await newSession.save()
+    await newSession.save();
+
+    for (const slot of scheduledSlots) {
+      for (const attendee of slot.attendees) {
+        const emailBody = `
+          <p>Dear ${attendee.name},</p>
+          <p>You have been scheduled for a session on ${day}.</p>
+          <p>Session Details:</p>
+          <ul>
+            <li>Start Time: ${slot.start.toLocaleString()}</li>
+            <li>End Time: ${slot.end.toLocaleString()}</li>
+          </ul>
+          <p>Thank you!</p>
+        `;
+
+        await sendEmail({
+          toMail: attendee.email,
+          subject: "Session Scheduled",
+          body: emailBody,
+        });
+      }
+    }
 
     return res.status(200).json(newSession);
   } catch (error) {
@@ -106,6 +128,26 @@ export const deleteSession = async (req: Request, res: Response) => {
     }
 
     return res.status(200).json({ message: "Session deleted successfully" });
+  } catch (error) {
+    console.error("error in deleteSession:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const sendTestEmail = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+
+    const payload: SendEmailParams = {
+      toMail: email,
+      subject: "Test Email",
+      body: "This is a test email from the backend.",
+    };
+
+    await sendEmail(payload);
+    return res
+      .status(200)
+      .json({ message: "Email sent successfully", payload });
   } catch (error) {
     console.error("error in deleteSession:", error);
     res.status(500).json({ error: "Internal server error" });
