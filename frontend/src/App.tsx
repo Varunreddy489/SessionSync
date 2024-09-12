@@ -1,15 +1,16 @@
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 
-const App = () => {
+function App() {
   return (
-    <div className="bg-black h-screen ">
-      {/* <Login /> */}
-      <LandingPage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        {/* <Route path="/employee" element={<EmployeePage />} />
+        <Route path="/admin" element={<AdminPage />} /> */}
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;

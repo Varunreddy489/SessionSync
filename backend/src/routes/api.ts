@@ -46,9 +46,16 @@ router.get("/admin/:adminId", AdminProtectedRoute, getAllUserSessions);
 router.put("/admin/session/:sessionId", AdminProtectedRoute, updateSession);
 router.delete("/admin/session/:sessionId", AdminProtectedRoute, deleteSession);
 
-
 // * Email Route
+router.post("/email", sendTestEmail);
 
-router.post("/email", sendTestEmail)
+// * Profile Routes
+
+router.post("/user/profile");
+router.get("/user/profile");
+router.put("/user/profile");
+router.delete("/user/profile");
+
+// * Notification Routes
 
 export { router as apiRoutes };
