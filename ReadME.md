@@ -13,9 +13,30 @@ Welcome to the Session Application! This application allows users to dynamically
 
 ## Features
 
-- Set availability for specific days or the entire week.
-- Admin can view availability and schedule one-on-one or group sessions.
-- Clean and intuitive user interface.
+Dynamic Availability Setting:
+
+Users can set their availability for specific days or for the entire week.
+Admin Scheduling:
+
+Admin can view user availability and schedule sessions accordingly.
+Options for scheduling one-on-one sessions or group sessions.
+Admin Panel:
+
+A dedicated panel for the admin to manage sessions, users, and availability efficiently.
+Clean and Intuitive User Interface:
+
+A user-friendly interface for both users and the admin to interact with the application seamlessly.
+Rate Limiting:
+
+Implemented rate limiting to control the number of requests, ensuring efficient performance and security.
+Email Notifications:
+
+Automatically sends email notifications to participants when sessions are scheduled.
+Backend Logging:
+
+Comprehensive logging for tracking system activity, debugging, and error reporting.
+Logs important events like session creation, availability updates, scheduling, and email sending.
+Performance monitoring to track response times of requests and system health.
 
 ## Getting Started
 
