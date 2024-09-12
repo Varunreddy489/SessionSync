@@ -71,7 +71,7 @@ PORT=your_port_number
 
 ## Features
 
-   **Dynamic Availability Setting:**
+ **Dynamic Availability Setting:**
  - Users can set their availability for specific days or for the entire week.
  **Admin Scheduling:**
 - Admin can view user availability and schedule sessions (one-on-one or group).
