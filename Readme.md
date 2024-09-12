@@ -73,19 +73,21 @@ PORT=your_port_number
 
  **Dynamic Availability Setting:**
  - Users can set their availability for specific days or for the entire week.
+
  **Admin Scheduling:**
 - Admin can view user availability and schedule sessions (one-on-one or group).
 
  **Admin Panel:**
 - A dedicated panel for the admin to manage sessions, users, and availability.
+
 **Rate Limiting:**
 - Controls the number of requests to enhance performance and security.
 
 **Email Notifications:**
 - Automatically sends emails to participants when sessions are scheduled.
+
 **Backend Logging:**
 - Logs system activity, session creation, availability updates, and scheduling events.
-
 - Tracks errors and exceptions for easier debugging and troubleshooting.
 - Monitors performance metrics, such as request response times, for system optimization.
 
